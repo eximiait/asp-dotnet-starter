@@ -1,0 +1,10 @@
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Welcome to ASP.NET Core!</h1>
+<p>This is the home page of your ASP.NET Core application.</p>
+<p>The example's variable value is : @Configuration.GetSection("Variables")["VariableEjemplo"]</p>
