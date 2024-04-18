@@ -3,12 +3,13 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
-# Use the SDK image to build the application
+# Use the SDK image to restore the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS deps
 WORKDIR /src
 COPY "MyAspNetCoreApp.csproj" .
 RUN dotnet restore "MyAspNetCoreApp.csproj"
 
+# Build the application
 FROM deps AS build
 COPY . .
 RUN dotnet build "MyAspNetCoreApp.csproj" --no-restore -c Release
